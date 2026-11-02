@@ -114,8 +114,8 @@ The full Entity-Relationship Diagram is included in this repository:
 
 - [x] **Milestone 1:** Project selection and setup
 - [x] **Milestone 2:** Database modeling and ERD *(this milestone)*
-- [ ] **Milestone 3:** Create the database schema (tables, keys, constraints)
-- [ ] **Milestone 4:** Load sample data and write queries
+- [x] **Milestone 3:** Create the database schema (tables, keys, constraints)
+- [x] **Milestone 4:** Load sample data and write queries
 - [ ] **Milestone 5:** Build the application on top of the database
 
 ---
