@@ -1,139 +1,64 @@
-# SE-3050-Group-Project
-Members: Leonard Oberg, MD Aarish Khan
-
-<a href="https://github.com/users/LeonardObergJr/projects/2">Project Management Board</a>
- | 11/1/26, 7:32 PM
-<img width="1071" height="1063" alt="image" src="https://github.com/user-attachments/assets/d1486cbb-2539-438c-a08a-dd6d5a4cd37b" />
-
-
-
-
-
 # Farmers Market Management System
 
-A database-driven application for managing local markets, the vendors who sell at them, the products they offer, and the orders customers place.
+SE 3050 group project by Leonard Oberg and MD Aarish Khan.
 
-> **Course:** SE 3050 – Fall 2026
-> **Current milestone:** Milestone 2 – Database Modeling & Design
+The application connects to a relational database and provides a simple interface for browsing farmers markets and products, viewing participating vendors, and placing product pre-orders.
 
----
+## Features
 
-## Project Proposal
+- Browse markets and open a market to see its details and vendors.
+- Search products by product name, vendor, or category across the product catalog.
+- Place a pre-order with customer details and a requested quantity.
+- Save the order, order-item price, total, and stock change in one database transaction. An order is rejected if the requested stock is unavailable.
 
-### The Problem
+## Technology
 
-Local markets are usually run with spreadsheets, paper sign-up sheets, and a lot of back-and-forth messages. It's hard to know which vendors are at which market, who has which booth, what's actually in stock, or what a customer ordered. Information ends up scattered, out of date, or lost.
+- Java 17 and Spring Boot
+- Spring MVC, Spring Data JPA, and Jakarta Bean Validation
+- H2 file database
+- HTML, CSS, and vanilla JavaScript
 
-### What This Project Does
+## Run locally
 
-This application brings everything into one organized system. Market organizers can keep track of their markets and vendors, vendors can manage what they sell, and customers can browse products and place orders. All of it sits on a clean relational database so the data stays consistent and easy to query.
+Requirements: Java 17 or newer.
 
-### Goals
+From the project root:
 
-- Keep one reliable source of truth for markets, vendors, products, and orders.
-- Let a vendor take part in more than one market, and let a market host many vendors.
-- Make it easy to find products by category, vendor, or price.
-- Record orders accurately, including the price paid at the time of purchase.
-- Build a design that's simple to understand and easy to extend later.
-
-### Planned Features
-
-**For market organizers**
-- Add and update markets (name, address, city, operating days, description).
-- Assign vendors to a market with a booth number and start/end dates.
-- See which vendors are active at a market at any given time.
-
-**For vendors**
-- Create a vendor profile (business name, contact person, email, phone, description).
-- Add, edit, and remove products with a price, description, and stock quantity.
-- Join one or more markets and keep track of their booth assignments.
-
-**For customers**
-- Create an account and browse products across markets.
-- Filter products by category or vendor.
-- Place orders with multiple items and view order history and status.
-
-**Across the system**
-- Products are organized into categories (produce, baked goods, honey, etc.).
-- Stock quantity is tracked per product.
-- Order totals and line-item prices are stored for accurate records.
-
----
-
-## Database Design
-
-The full Entity-Relationship Diagram is included in this repository:
-
-![Entity Relationship Diagram](./Milestone_2_ERD.jpg)
-
-
-### Entities
-
-| Entity | What it stores |
-|---|---|
-| **MARKET** | Each market's name, address, city, operating days, and description |
-| **VENDOR** | Business name, contact name, email, phone, and description |
-| **MARKET_VENDOR** | Which vendor is at which market, with booth number and start/end dates |
-| **CATEGORY** | Product categories (e.g., produce, dairy, crafts) |
-| **PRODUCT** | Name, description, price, and stock quantity; linked to a vendor and a category |
-| **CUSTOMER** | First and last name, unique email, and phone |
-| **ORDERS** | Order date, status, and total amount; linked to a customer |
-| **ORDER_ITEM** | The products in each order, with quantity and unit price |
-
-### Relationships
-
-- **Market → Market_Vendor** (one-to-many, "hosts"): a market can host many vendor entries.
-- **Vendor → Market_Vendor** (one-to-many, "joins"): a vendor can join many markets.
-- **Vendor → Product** (one-to-many, "sells"): a vendor sells many products, and each product belongs to one vendor.
-- **Category → Product** (one-to-many, "classifies"): a category groups many products.
-- **Customer → Orders** (one-to-many, "places"): a customer can place many orders.
-- **Orders → Order_Item** (one-to-many, "contains"): an order contains one or more items.
-- **Product → Order_Item** (one-to-many, "appears in"): a product can appear in many order items.
-
-### Design Decisions
-
-- **Many-to-many relationships are broken up with junction tables.** Markets and vendors are many-to-many, so `MARKET_VENDOR` sits between them. Orders and products are also many-to-many, so `ORDER_ITEM` sits between those. Both use a composite primary key made of their two foreign keys.
-- **`unit_price` lives on `ORDER_ITEM`.** Product prices change over time, so each order item saves the price paid when the order was placed. Old orders never change by accident.
-- **Booth details belong to `MARKET_VENDOR`.** A booth number and a start/end date only make sense for a specific vendor at a specific market, so they're stored on the relationship and not on either entity.
-- **Customer emails are unique.** This prevents duplicate accounts.
-- **Categories are their own table.** This avoids typos and inconsistent labels and makes filtering easy.
-
----
-
-## Tech Stack
-
-> Fill this in with whatever your team is using, for example:
-
-- **Database:** MySQL / PostgreSQL
-- **Backend:** Java
-- **Frontend:** React
-
----
-
-## Project Roadmap
-
-- [x] **Milestone 1:** Project selection and setup
-- [x] **Milestone 2:** Database modeling and ERD *(this milestone)*
-- [x] **Milestone 3:** Create the database schema (tables, keys, constraints)
-- [x] **Milestone 4:** Load sample data and write queries
-- [ ] **Milestone 5:** Build the application on top of the database
-
----
-
-## Repository Contents
-
-```
-├── README.md      # Project proposal and database overview
-└── erd.png        # Entity-Relationship Diagram (Milestone 2)
+```powershell
+.\mvnw.cmd spring-boot:run
 ```
 
----
+Open [http://localhost:8080](http://localhost:8080). The database is stored under `data/market_management`. On first startup, the app creates the schema and loads the sample data. Later startups preserve existing records; the sample data is only loaded when the market table is empty.
 
-## Future Ideas
+To run the tests:
 
-- Payment tracking and receipts
-- Vendor ratings and customer reviews
-- Seasonal availability for products
-- Low-stock alerts for vendors
-- Sales reports per market and per vendor
+```powershell
+.\mvnw.cmd test
+```
 
+The tests use a separate in-memory database and do not modify the local database file.
+
+## Main API routes
+
+| Method | Route | Purpose |
+|---|---|---|
+| `GET` | `/api/markets` | List markets |
+| `GET` | `/api/markets/{id}` | View a market |
+| `GET` | `/api/markets/{id}/vendors` | List vendors at a market |
+| `GET` | `/api/products?search={term}` | List or search products |
+| `GET` | `/api/products/{id}` | View a product |
+| `POST` | `/api/orders` | Place a pre-order |
+
+The H2 console is available at `/h2-console` during local development. Use JDBC URL `jdbc:h2:file:./data/market_management`, username `Aarish_Khan`, and leave the password blank.
+
+## Submission checklist
+
+- [ ] Push the complete project source to the group's GitHub repository.
+- [ ] Add the group's narrated 5–7 minute feature-demo video link here before submission:
+  _Video link not supplied yet._
+
+The demo should show browsing markets, viewing vendors, searching products, placing a valid pre-order, and confirming that an unavailable quantity is rejected.
+
+## Project database materials
+
+The original milestone database design, ERD, normalization report, and query examples are in [`SE-3050-Group-Project-main/`](./SE-3050-Group-Project-main/).

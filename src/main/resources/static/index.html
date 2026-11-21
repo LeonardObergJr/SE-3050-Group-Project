@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farmers Market Hub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-icon">🌱</span>
+        Farmers Market Hub
+    </div>
+
+    <nav>
+        <a href="index.html">Markets</a>
+        <a href="#products">Products</a>
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            LOCAL • FRESH • COMMUNITY
+        </span>
+
+        <h1>
+            Discover Fresh Food<br>
+            From Local Farmers
+        </h1>
+
+        <p>
+            Explore farmers markets, discover local vendors,
+            find fresh products and place your pre-order.
+        </p>
+
+        <a href="#markets" class="hero-button">
+            Explore Markets
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MARKETS ================= -->
+
+<section class="section" id="markets">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">
+                EXPLORE
+            </span>
+
+            <h2>
+                Farmers Markets
+            </h2>
+        </div>
+
+        <p>
+            Find local markets and discover
+            the vendors in your community.
+        </p>
+
+    </div>
+
+
+    <div
+        id="marketContainer"
+        class="market-grid">
+
+        <!-- JavaScript will load markets here -->
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section
+    class="section products-section"
+    id="products">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">
+                DISCOVER
+            </span>
+
+            <h2>
+                Find Products
+            </h2>
+        </div>
+
+        <p>
+            Search products from vendors
+            across all farmers markets.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products, vendors or categories..."
+        >
+
+        <button
+            id="searchButton"
+            type="button">
+
+            🔍 Search
+
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        id="productContainer"
+        class="product-grid">
+
+        <!-- JavaScript will load products -->
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="logo footer-logo">
+                <span class="logo-icon">🌱</span>
+                Farmers Market Hub
+            </div>
+
+            <p>
+                Connecting communities with
+                local farmers and fresh food.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Markets
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Farmers Market Hub.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

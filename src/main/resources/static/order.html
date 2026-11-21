@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Pre-Order</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-icon">🌱</span>
+        Farmers Market Hub
+    </div>
+
+    <nav>
+        <a href="index.html">Markets</a>
+        <a href="index.html#products">Products</a>
+    </nav>
+</header>
+
+<main class="order-page">
+    <div class="order-container">
+
+        <a href="index.html#products" class="back-link">
+            ← Back to Products
+        </a>
+
+        <div class="order-layout">
+
+            <section id="selectedProduct" class="order-product">
+            </section>
+
+            <section class="order-card">
+                <span class="section-label">PRE-ORDER</span>
+
+                <h1>Place Your Order</h1>
+
+                <p class="order-description">
+                    Enter your information and select the quantity you want to order.
+                </p>
+
+                <form id="orderForm">
+
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Enter your first name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Enter your last name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            min="1"
+                            value="1"
+                            required>
+                    </div>
+
+                    <div id="orderTotal" class="order-total">
+                        <span>Total:</span>
+                        <strong>$0.00</strong>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Place Pre-Order
+                    </button>
+
+                    <div id="orderMessage" class="order-message"></div>
+
+                </form>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-bottom">
+        © 2026 Farmers Market Hub. All rights reserved.
+    </div>
+</footer>
+
+<script src="js/order.js"></script>
+
+</body>
+</html>
