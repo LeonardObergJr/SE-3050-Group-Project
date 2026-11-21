@@ -59,6 +59,3 @@ The H2 console is available at `/h2-console` during local development. Use JDBC 
 
 The demo should show browsing markets, viewing vendors, searching products, placing a valid pre-order, and confirming that an unavailable quantity is rejected.
 
-## Project database materials
-
-The original milestone database design, ERD, normalization report, and query examples are in [`SE-3050-Group-Project-main/`](./SE-3050-Group-Project-main/).
