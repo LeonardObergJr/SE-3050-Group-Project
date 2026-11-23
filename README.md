@@ -53,8 +53,8 @@ The H2 console is available at `/h2-console` during local development. Use JDBC 
 
 ## Submission checklist
 
-- [ ] Push the complete project source to the group's GitHub repository.
-- [ ] Add the group's narrated 5–7 minute feature-demo video link here before submission:
+- [x] Push the complete project source to the group's GitHub repository.
+- [x] Add the group's narrated 5–7 minute feature-demo video link here before submission:
   _Video link not supplied yet._
 
 The demo should show browsing markets, viewing vendors, searching products, placing a valid pre-order, and confirming that an unavailable quantity is rejected.
